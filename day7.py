@@ -5,24 +5,27 @@ lines = []
 with open("day7.txt", "r") as input_file:
     lines = input_file.readlines()
 
-def containsThing(s):
+# Used for Star 1
+def containsABBA(s):
     if len(s) < 4:
         return False
 
     for i in range(0, len(s) - 3):
-        if s[i] != s[i + 1] and s[i] == s[i + 3] and s[i + 1] == s[i + 2] and s[i] != "*" and s[i + 1] != "*":
+        if s[i] != s[i + 1] and s[i] == s[i + 3] and s[i + 1] == s[i + 2]:
             return True
 
     return False
 
-def arrayContainsThing(a):
+# Used for Star 1
+def arrayContainsABBA(a):
     for s in a:
         s = s.replace("[", "").replace("]", "")
-        if containsThing(s):
+        if containsABBA(s):
             return True
 
     return False
 
+# Used for Star 2
 def findABAs(a):
     abas = []
 
@@ -33,6 +36,7 @@ def findABAs(a):
 
     return abas
 
+# Used for Star 2
 def makeBABs(a):
     babs = []
     for aba in a:
@@ -62,11 +66,6 @@ def testString(s):
     return False
 
 answer = 0
-
-print(testString("aba[bab]xyz"))
-print(not testString("xyx[xyx]xyx"))
-print(testString("aaa[kek]eke"))
-print(testString("zazbz[bzb]cdb"))
 
 for line in lines:
     line = line.strip()
